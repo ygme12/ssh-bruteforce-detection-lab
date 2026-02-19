@@ -2,7 +2,7 @@
 
 ## Objective
 Demonstrate SSH brute force attack analysis, detection, and mitigation.
-check out the demonstration: (walkthrough.md/)
+check out the demonstration: [walkthrough](walkthrough.md/)
 
 ## Environment
 - Ubuntu Server (SSH target)
