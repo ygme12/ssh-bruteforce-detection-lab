@@ -14,12 +14,12 @@ Expected:
 PermitRootLogin no
 PasswordAuthentication yes
 
-2️⃣ Baseline Observation
+## 2️⃣ Baseline Observation
 Before attacking, check baseline failed logins:
 ```bash
 grep "Failed password" /var/log/auth.log | wc -l
 ```
-3️⃣ Clear Logs (Clean Slate)
+## 3️⃣ Clear Logs (Clean Slate)
 Backup current logs:
 ```bash
 sudo cp /var/log/auth.log /var/log/auth.log.bak
@@ -30,7 +30,7 @@ Clear current logs:
 sudo truncate -s 0 /var/log/auth.log
 sudo systemctl restart ssh
 ```
-4️⃣ Run Controlled Brute Force
+## 4️⃣ Run Controlled Brute Force
 From attacker VM using Hydra:
 ```bash
 hydra -l <target_user> -P <password_list.txt> ssh://<target_ip>
@@ -43,7 +43,7 @@ Total failed attempts
 Duration (seconds)
 Average attempts per second
 Store results in attack-analysis/attack-metrics.md and timeline.md.
-5️⃣ Analyze Logs
+## 5️⃣ Analyze Logs
 Extract failed attempts:
 ```bash
 grep "Failed password" /var/log/auth.log
@@ -61,7 +61,7 @@ grep "Failed password" /var/log/auth.log | awk '{print $11}' | sort | uniq -c | 
 ```
 Fill in attack-metrics.md and timeline.md with exact numbers.
 
-6️⃣ Detection Script
+## 6️⃣ Detection Script
 Threshold-based detection:
 ```bash
 #!/bin/bash
@@ -79,13 +79,13 @@ Adjust THRESHOLD based on your experiment
 Test script to ensure alert triggers before successful login
 Document logic in detection/detection-logic.md.
 
-7️⃣ MITRE Mapping
+## 7️⃣ MITRE Mapping
 T1110.001 – Password Guessing (attack method)
 T1078 – Valid Accounts (successful login)
 Write brief explanations in detection/detection-logic.md.
 
 
-8️⃣ Mitigation With Fail2Ban
+## 8️⃣ Mitigation With Fail2Ban
 
 Install:
 ```bash
@@ -111,7 +111,7 @@ Number of attempts before IP banned
 Whether successful login occurred
 Fill in fail2ban-implementation.md.
 
-9️⃣ SSH Hardening 
+## 9️⃣ SSH Hardening 
 Disable password authentication:
 ```bash
 sudo nano /etc/ssh/sshd_config
@@ -123,7 +123,7 @@ Disable root login (already done)
 Optional: change SSH port
 Document outcomes in hardening-analysis.md.
 
-10️⃣ Screenshots
+## 10️⃣ Screenshots
 Include:
 Attack running in Hydra
 Auth.log outputs
