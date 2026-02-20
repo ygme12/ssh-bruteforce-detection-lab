@@ -7,5 +7,5 @@
 
 ### Validation
 - Re-run controlled brute force
-- Capture number of attempts before IP banned: ___
-- Result: ___ (compromise prevented / blocked)
+- Capture number of attempts before IP banned: 9
+- Result: blocked
